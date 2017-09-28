@@ -204,9 +204,14 @@ namespace UnityGLTF
 		{
 			for (int i = 0; i < _root.Meshes.Count; ++i)
 			{
-				GLTF.Schema.Mesh mesh = _root.Meshes[i];
+<<<<<<< HEAD:UnityGLTF/Assets/GLTF/Scripts/GLTFSceneImporter.cs
+				GLTFSerialization.Mesh mesh = _root.Meshes[i];
 				_assetCache.MeshCache[i] = new MeshCacheData[mesh.Primitives.Count];
 				for(int j = 0; j < mesh.Primitives.Count; ++j)
+=======
+				GLTF.Schema.Mesh mesh = _root.Meshes[i];
+				if (_assetCache.MeshCache[i] == null)
+>>>>>>> up/architecture-update:UnityGLTF/Assets/UnityGLTF/Scripts/GLTFSceneImporter.cs
 				{
 					_assetCache.MeshCache[i][j] = new MeshCacheData();
 					var primitive = mesh.Primitives[j];
@@ -219,7 +224,8 @@ namespace UnityGLTF
 		{
 			if (_assetCache.MeshCache[meshID][primitiveIndex].MeshAttributes.Count == 0)
 			{
-				Dictionary<string, AttributeAccessor> attributeAccessors = new Dictionary<string, AttributeAccessor>(primitive.Attributes.Count + 1);
+				Dictionary<string, AttributeAccessor> attributeAccessors =
+					new Dictionary<string, AttributeAccessor>(primitive.Attributes.Count + 1);
 				foreach (var attributePair in primitive.Attributes)
 				{
 					AttributeAccessor AttributeAccessor = new AttributeAccessor()
@@ -319,8 +325,13 @@ namespace UnityGLTF
 			var primitiveObj = new GameObject("Primitive");
 
 			var meshFilter = primitiveObj.AddComponent<MeshFilter>();
+<<<<<<< HEAD:UnityGLTF/Assets/GLTF/Scripts/GLTFSceneImporter.cs
 			
 			if (_assetCache.MeshCache[meshID][primitiveIndex] == null)
+=======
+
+			if (_assetCache.MeshCache[meshID] == null)
+>>>>>>> up/architecture-update:UnityGLTF/Assets/UnityGLTF/Scripts/GLTFSceneImporter.cs
 			{
 				_assetCache.MeshCache[meshID][primitiveIndex] = new MeshCacheData();
 			}
